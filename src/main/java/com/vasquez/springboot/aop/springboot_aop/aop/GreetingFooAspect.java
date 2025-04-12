@@ -18,7 +18,8 @@ public class GreetingFooAspect {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Before("execution(String com.vasquez.springboot.aop.springboot_aop.services.GreetingService.*(..))")
+
+    @Before("GreetingServicePointcuts.greetingFooLoggerPointCut()")
     public void loggerBefore(JoinPoint joinPoint) {
 
         String method = joinPoint.getSignature().getName();
@@ -26,7 +27,7 @@ public class GreetingFooAspect {
         logger.info("Antes foo: " + method + " invocando con los parametros " + args);
     }
 
-    @After("execution(String com.vasquez.springboot.aop.springboot_aop.services.GreetingService.*(..))")
+    @After("GreetingServicePointcuts.reetingFooLoggerPointCut()")
     public void loggerAfter(JoinPoint joinPoint) {
 
         String method = joinPoint.getSignature().getName();

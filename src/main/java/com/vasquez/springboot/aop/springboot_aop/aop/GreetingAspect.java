@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class GreetingAspect {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Before("execution(String com.vasquez.springboot.aop.springboot_aop.services.GreetingService.*(..))")
+    @Before("GreetingServicePointcuts.greetingLoggerPointCut()")
     public void loggerBefore(JoinPoint joinPoint) {
 
         String method = joinPoint.getSignature().getName();
@@ -29,7 +29,7 @@ public class GreetingAspect {
         logger.info("Antes: " + method + " con los argumentos " + args);
     }
 
-    @After("execution(String com.vasquez.springboot.aop.springboot_aop.services.GreetingService.*(..))")
+    @After("GreetingServicePointcuts.greetingLoggerPointCut()")
     public void loggerAfter(JoinPoint joinPoint) {
 
         String method = joinPoint.getSignature().getName();
@@ -37,7 +37,7 @@ public class GreetingAspect {
         logger.info("Despues: " + method + " con los argumentos " + args);
     }
 
-    @AfterReturning("execution(String com.vasquez.springboot.aop.springboot_aop.services.GreetingService.*(..))")
+    @AfterReturning("GreetingServicePointcuts.greetingLoggerPointCut()")
     public void loggerAfterReturning(JoinPoint joinPoint) {
 
         String method = joinPoint.getSignature().getName();
@@ -45,7 +45,7 @@ public class GreetingAspect {
         logger.info("Despues de retornar: " + method + " con los argumentos " + args);
     }
 
-    @AfterThrowing("execution(String com.vasquez.springboot.aop.springboot_aop.services.GreetingService.*(..))")
+    @AfterThrowing("GreetingServicePointcuts.greetingLoggerPointCut()")
     public void loggerAfterThrowing(JoinPoint joinPoint) {
 
         String method = joinPoint.getSignature().getName();
@@ -53,7 +53,7 @@ public class GreetingAspect {
         logger.info("Despues de lanzar una excepcion: " + method + " con los argumentos " + args);
     }
 
-    @Around("execution(String com.vasquez.springboot.aop.springboot_aop.services.GreetingService.*(..))")
+    @Around("GreetingServicePointcuts.greetingLoggerPointCut()")
     public Object loggerAround(ProceedingJoinPoint joinPoint) throws Throwable {
         String method = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
